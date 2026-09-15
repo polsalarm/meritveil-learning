@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sourceRoot": "../../../",
+  "sources": ["contracts/counter.compact", "compiler/standard-library.compact"],
+  "names": [],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAuBA;;;;;;;;;;;;;MAPA,AAAA,qBAKC;;OAAA;MAMD,AAAA,SAIC;;;;;;;;;;;;;;;;;;;;;;OAAA;;;;GANA;EAFD;;;;;UAAY,wBAAiC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAZ7C;;;;;;;;;yEAA+B;IAC/B;;;;;;;;;yEAAyC;IAYvC;;;;;;;2HAA2B,wBAAsB;;yEAAlC;;;;;;;GAChB;ECzBD,AAAA,kBAAA;oEAAA;;;EDcA,AAAA,YAA+B;;0DAA/B,SAA+B;;;;;;;;;;;;;;GAAA;EAE/B,AAAA,wBAKC,CALoC,QAAiB;;mCAGlD,QAAM;GAET;EAMD,AAAA,YAIC;UAHO,WAA8C;;0CAC7C,WAAS;kEAAI;;;;;;;;;;;uIAAe;;UACnC,KAAO;IAAP;;;;;;;;;;6FAAA,KAAO;;;;wEAAA;;GACR;;;;;;;;;;;;;;;;;;;;IApBD;qCAAA;;;;;;;;;;;0GAA+B;KAAA;IAC/B;qCAAA;;;;;;;;;;;0GAAyC;KAAA;;;;;;;;EAIzC,AAAA,qBAKC;;;;UALoC,QAAiB;;;;;;;;mDAAjB,QAAiB;GAKrD;;;;"
+}

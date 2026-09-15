@@ -1,0 +1,32 @@
+/**
+ * Privacy model:
+ * - Public: the counter value and the owner's 32-byte commitment.
+ * - Private: the owner's 32-byte secret, supplied only by the secretKey witness.
+ * - Proved without revealing: increment proves that the witness secret hashes to
+ *   the stored commitment. The secret is never disclosed, returned, or written.
+ */
+pragma language_version 0.23;
+
+import CompactStandardLibrary;
+
+export ledger counter: Counter;
+export ledger ownerCommitment: Bytes<32>;
+
+witness secretKey(): Bytes<32>;
+
+export circuit deriveOwnerCommitment(secret: Bytes<32>): Bytes<32> {
+  return persistentHash<Vector<2, Bytes<32>>>([
+    pad(32, "meritveil:counter-owner:v1"),
+    secret
+  ]);
+}
+
+constructor(initialOwnerCommitment: Bytes<32>) {
+  ownerCommitment = disclose(initialOwnerCommitment);
+}
+
+export circuit increment(): [] {
+  const candidate = deriveOwnerCommitment(secretKey());
+  assert(candidate == ownerCommitment, "owner secret does not match commitment");
+  counter.increment(1);
+}
