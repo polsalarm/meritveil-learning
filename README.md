@@ -7,7 +7,7 @@ A privacy-aware Midnight learning contract: only the committed owner can increme
 | Network | Contract address | Status |
 |---|---|---|
 | Undeployed | `37a262a2fcfa18851566f812e562f03ff3210f2d46d4581e23b6aceb7033acd1` | Local smoke-tested |
-| Preview | Pending faucet funding | Level 1 submission target |
+| Preview | `a927a7927a3e6ca61d5d14b4b48f6a8f3fa90d04ba9eef97113c4137f2e5eaab` | Deployed and indexed |
 | Preprod | Not deployed | Planned for Level 2 |
 
 ## Behavior
@@ -39,6 +39,7 @@ The secret is never disclosed, returned by a circuit, written to ledger state, r
 | Midnight ledger | 8.1.0 |
 | On-chain runtime | 3.0.0 |
 | Wallet SDK | 1.2.0 |
+| Polkadot API | 16.5.6 |
 | Proof server | 8.1.0 |
 | Local Midnight node image | 1.0.0 |
 | Local indexer image | 4.3.3 |
@@ -92,7 +93,7 @@ Choose **Increment counter** to generate the ownership proof and submit a transa
 npm run setup -- --network preview
 ```
 
-The command generates a Preview wallet on first use, prints its unshielded address, and waits for faucet funding. Fund it at <https://midnight-tmnight-preview.nethermind.dev/>. Wallet material, deployment state, LevelDB private state, and sync caches are gitignored.
+The command generates a Preview wallet on first use, prints its unshielded address, waits for faucet funding, and deploys after the funds arrive. Fund it at <https://midnight-tmnight-preview.nethermind.dev/>. Wallet material, deployment state, LevelDB private state, and sync caches are gitignored.
 
 The proof server remains local at `http://localhost:6300`; private witness data is not sent to a shared prover.
 

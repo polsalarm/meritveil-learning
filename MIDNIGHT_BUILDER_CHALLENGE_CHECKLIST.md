@@ -14,20 +14,20 @@ Goal: prove the local Midnight toolchain and a privacy-aware contract on Preview
 - [x] Prove a valid owner increment on the undeployed network and read back the confirmed public count.
 - [x] Add behavior tests for a valid owner, a rejected wrong secret with unchanged state, and absence of the secret from decoded public state.
 - [x] Generate the circuit, prover key, verifier key, compiler metadata, and TypeScript binding under `managed/counter/`.
-- [ ] Fund the generated Preview wallet through the Preview faucet.
-- [ ] Deploy the private-owner counter to Preview and capture the contract address.
-- [ ] Complete README description, address table, behavior, privacy model, stack, prerequisites, setup, tests, initial idea, and screenshot sections.
+- [x] Fund the generated Preview wallet through the Preview faucet.
+- [x] Deploy the private-owner counter to Preview and capture the contract address.
+- [x] Complete README description, address table, behavior, privacy model, stack, prerequisites, setup, tests, initial idea, and screenshot sections.
 - [ ] Add compile and deployment screenshots.
-- [ ] Fill the final Initial Idea paragraph.
-- [ ] Make at least five meaningful commits.
+- [x] Fill the final Initial Idea paragraph.
+- [x] Make at least five meaningful commits.
 - [ ] Push a public GitHub repository and submit Level 1.
 
 ### Level 1 exit proof
 
 - [x] Compact compile command succeeds.
 - [x] Three behavior tests pass.
-- [ ] Preview deployment address appears in README.
-- [ ] Repository contains all final source, generated artifacts, tests, lockfile, and complete README.
+- [x] Preview deployment address appears in README.
+- [x] Repository contains all final source, generated artifacts, tests, lockfile, and complete README.
 
 ## Level 2 — Waxing Crescent
 
