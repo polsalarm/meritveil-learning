@@ -52,7 +52,9 @@
     "typescript": "^6.0.3"
   },
   "overrides": {
-    "@midnight-ntwrk/onchain-runtime-v3": "3.0.0"
+    "@midnight-ntwrk/onchain-runtime-v3": "3.0.0",
+    "@swc/core": "1.15.43",
+    "@swc/wasm": "1.15.43"
   },
   "engines": {
     "node": ">=22.0.0 <23"
