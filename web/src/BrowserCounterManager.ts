@@ -1,4 +1,4 @@
-import type { ConnectedAPI, InitialAPI, WalletConnectedAPI } from '@midnight-ntwrk/dapp-connector-api';
+import type { ConnectedAPI, InitialAPI } from '@midnight-ntwrk/dapp-connector-api';
 import { FetchZkConfigProvider } from '@midnight-ntwrk/midnight-js-fetch-zk-config-provider';
 import { indexerPublicDataProvider } from '@midnight-ntwrk/midnight-js-indexer-public-data-provider';
 import { setNetworkId } from '@midnight-ntwrk/midnight-js-network-id';
@@ -91,15 +91,6 @@ export class BrowserCounterManager {
     }
 
     const connectedWallet = await wallet.connect(browserConfig.networkId);
-    await connectedWallet.hintUsage([
-      'getConfiguration',
-      'getConnectionStatus',
-      'getShieldedAddresses',
-      'getUnshieldedAddress',
-      'balanceUnsealedTransaction',
-      'submitTransaction',
-      'getProvingProvider',
-    ] satisfies Array<keyof WalletConnectedAPI>);
     const [configuration, connectionStatus, shieldedAddresses, unshieldedAddress] = await Promise.all([
       connectedWallet.getConfiguration(),
       connectedWallet.getConnectionStatus(),
