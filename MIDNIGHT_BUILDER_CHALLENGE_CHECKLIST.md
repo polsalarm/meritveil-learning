@@ -17,10 +17,11 @@ Goal: prove the local Midnight toolchain and a privacy-aware contract on Preview
 - [x] Fund the generated Preview wallet through the Preview faucet.
 - [x] Deploy the private-owner counter to Preview and capture the contract address.
 - [x] Complete README description, address table, behavior, privacy model, stack, prerequisites, setup, tests, initial idea, and screenshot sections.
-- [ ] Add compile and deployment screenshots.
+- [x] Add compile and deployment screenshots.
 - [x] Fill the final Initial Idea paragraph.
 - [x] Make at least five meaningful commits.
-- [ ] Push a public GitHub repository and submit Level 1.
+- [x] Push a public GitHub repository.
+- [ ] Submit Level 1 through the challenge portal.
 
 ### Level 1 exit proof
 

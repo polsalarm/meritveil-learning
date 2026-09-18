@@ -132,11 +132,11 @@ MeritVeil will let communities publish quests, review completion evidence privat
 
 ### Compact compilation
 
-<!-- Level 1 submission: add the successful `npm run compile` screenshot here. -->
+![Compact compiler generating the increment circuit successfully](./docs/screenshots/compact-compilation.png)
 
 ### Preview deployment
 
-<!-- Level 1 submission: add the successful Preview deployment screenshot and contract address here. -->
+![Preview end-to-end check confirming the indexed contract address](./docs/screenshots/preview-deployment.png)
 
 ## Challenge progress
 
