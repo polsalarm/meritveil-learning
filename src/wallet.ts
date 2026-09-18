@@ -4,6 +4,8 @@
 // wallet-state.ts (unit-tested from the scaffolder workspace, no SDK deps);
 // this file is the glue between that format and the wallet SDK.
 
+import './node-websocket';
+
 import { Buffer } from 'buffer';
 
 // Ledger types now come from the midnight-js-protocol barrel, which re-exports
@@ -34,6 +36,7 @@ import {
   type ChildKind,
   type PersistedWalletState,
 } from './wallet-state';
+import { makePollingSubmissionService } from './polling-submission-service';
 
 export { unshieldedToken };
 export type { PersistedWalletState };
@@ -118,6 +121,7 @@ export async function createWallet(opts: CreateWalletOptions): Promise<WalletCon
 
   const wallet = await WalletFacade.init({
     configuration: walletConfig,
+    submissionService: makePollingSubmissionService,
     shielded: async (config) => {
       const cls = ShieldedWallet(config);
       if (saved.shielded !== undefined) {

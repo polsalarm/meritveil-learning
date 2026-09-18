@@ -4,12 +4,13 @@
  * Non-interactive: scaffold → npm run setup runs straight through.
  * No readline prompts, no .midnight-seed file.
  */
+import './node-websocket';
+
 import * as path from 'node:path';
 import { resolveNetwork, getOrCreateWallet, formatWalletBackupNotice, recordDeployment } from './network';
 import { createWallet, persistWalletState, unshieldedToken, type WalletContext } from './wallet';
 import { createCounterPrivateStateFromWalletSeed, createCounterWitnesses } from './counter-private-state';
 import { fileURLToPath } from 'node:url';
-import { WebSocket } from 'ws';
 import * as Rx from 'rxjs';
 
 // Midnight SDK imports
@@ -20,9 +21,6 @@ import { levelPrivateStateProvider } from '@midnight-ntwrk/midnight-js-level-pri
 import { NodeZkConfigProvider } from '@midnight-ntwrk/midnight-js-node-zk-config-provider';
 import * as Counter from '../managed/counter/contract/index.js';
 import { CompiledContract } from '@midnight-ntwrk/midnight-js-protocol/compact-js';
-
-// @ts-expect-error Required for wallet sync
-globalThis.WebSocket = WebSocket;
 
 // Identifier under which the owner secret is persisted by Midnight's private
 // state provider. The witness reads it locally; it is never logged or disclosed.
@@ -224,14 +222,10 @@ async function main() {
   const dustState = await Rx.firstValueFrom(walletCtx.wallet.state().pipe(Rx.filter((s) => s.isSynced)));
 
   const unregisteredUtxos = dustState.unshielded.availableCoins.filter(
-    (c: any) => !c.meta?.registeredForDustGeneration,
+    (coin) => coin.meta?.registeredForDustGeneration !== true,
   );
   if (unregisteredUtxos.length > 0) {
     console.log(`  Registering ${unregisteredUtxos.length} NIGHT UTXOs for DUST generation...`);
-    // The signDustRegistration callback (3rd arg) already produces a recipe
-    // with N signatures matching N inputs. Do NOT call signRecipe again — that
-    // would double-sign and the chain rejects with InputsSignaturesLengthMismatch
-    // (Custom error 192). Matches upstream example-counter and example-bboard.
     const recipe = await walletCtx.wallet.registerNightUtxosForDustGeneration(
       unregisteredUtxos,
       walletCtx.unshieldedKeystore.getPublicKey(),

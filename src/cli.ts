@@ -1,11 +1,12 @@
 /**
  * CLI for interacting with meritveil-learning contract
  */
+import './node-websocket';
+
 import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { WebSocket } from 'ws';
 
 // Midnight SDK imports
 import { findDeployedContract } from '@midnight-ntwrk/midnight-js-contracts';
@@ -18,10 +19,6 @@ import { createWallet, persistWalletState, unshieldedToken, type WalletContext }
 import { createCounterPrivateStateFromWalletSeed, createCounterWitnesses } from './counter-private-state';
 import { CompiledContract } from '@midnight-ntwrk/midnight-js-protocol/compact-js';
 import * as Counter from '../managed/counter/contract/index.js';
-
-// Enable WebSocket for GraphQL subscriptions
-// @ts-expect-error Required for wallet sync
-globalThis.WebSocket = WebSocket;
 
 // Must match the privateStateId used at deploy time. The persisted private
 // state supplies the owner secret to the witness without exposing it.

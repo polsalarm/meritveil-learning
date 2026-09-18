@@ -1,16 +1,12 @@
 /**
  * Check wallet balance on the local Midnight devnet
  */
-import { WebSocket } from 'ws';
+import './node-websocket';
 
 // Midnight SDK imports
 import { resolveNetwork, getOrCreateWallet, formatWalletBackupNotice } from './network';
 // unshieldedToken is re-exported from ./wallet (originally @midnight-ntwrk/midnight-js-protocol/ledger).
 import { createWallet, persistWalletState, unshieldedToken } from './wallet';
-
-// Enable WebSocket for GraphQL subscriptions
-// @ts-expect-error Required for wallet sync
-globalThis.WebSocket = WebSocket;
 
 // ─── Network configuration ─────────────────────────────────────────────────────
 

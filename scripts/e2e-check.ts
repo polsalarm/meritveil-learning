@@ -4,9 +4,10 @@
  * Reconnects to the deployed contract, reads its ledger state, and exits 0
  * on success. Used by `npm run test:e2e` and by the project's CI workflows.
  */
+import '../src/node-websocket';
+
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { WebSocket } from 'ws';
 
 import { findDeployedContract } from '@midnight-ntwrk/midnight-js-contracts';
 import { httpClientProofProvider } from '@midnight-ntwrk/midnight-js-http-client-proof-provider';
@@ -18,9 +19,6 @@ import { createWallet, persistWalletState } from '../src/wallet';
 import { CompiledContract } from '@midnight-ntwrk/midnight-js-protocol/compact-js';
 import { createCounterPrivateStateFromWalletSeed, createCounterWitnesses } from '../src/counter-private-state';
 import * as Counter from '../managed/counter/contract/index.js';
-
-// @ts-expect-error wallet sync requires WebSocket
-globalThis.WebSocket = WebSocket;
 
 // Must match the privateStateId used at deploy time.
 const PRIVATE_STATE_ID = 'counterOwnerPrivateStateV1';
