@@ -45,10 +45,11 @@ export interface WalletSession {
 
 type PhaseListener = (phase: TransactionPhase) => void;
 
-function normalizedUrl(value: string): string {
+function requirePreprodService(name: string, value: string, protocol: 'https:' | 'wss:'): void {
   const url = new URL(value);
-  url.hash = '';
-  return url.toString().replace(/\/$/, '');
+  if (url.protocol !== protocol || !`${url.hostname}${url.pathname}`.toLowerCase().includes('preprod')) {
+    throw new Error(`Lace ${name} must be a secure Preprod endpoint.`);
+  }
 }
 
 function encodeSecret(secret: Uint8Array): string {
@@ -104,12 +105,8 @@ export class BrowserCounterManager {
     if (configuration.networkId !== browserConfig.networkId) {
       throw new Error(`Lace configuration targets ${configuration.networkId}, not ${browserConfig.networkId}.`);
     }
-    if (
-      normalizedUrl(configuration.indexerUri) !== normalizedUrl(browserConfig.indexerUrl) ||
-      normalizedUrl(configuration.indexerWsUri) !== normalizedUrl(browserConfig.indexerWsUrl)
-    ) {
-      throw new Error('Lace indexer configuration does not match the MeritVeil Preprod configuration.');
-    }
+    requirePreprodService('indexer', configuration.indexerUri, 'https:');
+    requirePreprodService('indexer WebSocket', configuration.indexerWsUri, 'wss:');
 
     setNetworkId(browserConfig.networkId);
     const zkConfigProvider = new FetchZkConfigProvider<CounterCircuitKeys>(window.location.origin, fetch.bind(window));
