@@ -16,7 +16,8 @@ import { levelPrivateStateProvider } from '@midnight-ntwrk/midnight-js-level-pri
 import { NodeZkConfigProvider } from '@midnight-ntwrk/midnight-js-node-zk-config-provider';
 import { resolveNetwork, getOrCreateWallet, formatWalletBackupNotice, getDeployment } from './network';
 import { createWallet, persistWalletState, unshieldedToken, type WalletContext } from './wallet';
-import { createCounterPrivateStateFromWalletSeed, createCounterWitnesses } from './counter-private-state';
+import { createCounterPrivateStateFromWalletSeed } from './counter-private-state-node';
+import { createCounterWitnesses } from './counter-private-state';
 import { CompiledContract } from '@midnight-ntwrk/midnight-js-protocol/compact-js';
 import * as Counter from '../managed/counter/contract/index.js';
 

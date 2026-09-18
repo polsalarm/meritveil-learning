@@ -9,7 +9,8 @@ import './node-websocket';
 import * as path from 'node:path';
 import { resolveNetwork, getOrCreateWallet, formatWalletBackupNotice, recordDeployment } from './network';
 import { createWallet, persistWalletState, unshieldedToken, type WalletContext } from './wallet';
-import { createCounterPrivateStateFromWalletSeed, createCounterWitnesses } from './counter-private-state';
+import { createCounterPrivateStateFromWalletSeed } from './counter-private-state-node';
+import { createCounterWitnesses } from './counter-private-state';
 import { fileURLToPath } from 'node:url';
 import * as Rx from 'rxjs';
 

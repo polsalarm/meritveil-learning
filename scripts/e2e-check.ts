@@ -17,7 +17,8 @@ import { NodeZkConfigProvider } from '@midnight-ntwrk/midnight-js-node-zk-config
 import { resolveNetwork, getOrCreateWallet, formatWalletBackupNotice, getDeployment } from '../src/network';
 import { createWallet, persistWalletState } from '../src/wallet';
 import { CompiledContract } from '@midnight-ntwrk/midnight-js-protocol/compact-js';
-import { createCounterPrivateStateFromWalletSeed, createCounterWitnesses } from '../src/counter-private-state';
+import { createCounterPrivateStateFromWalletSeed } from '../src/counter-private-state-node';
+import { createCounterWitnesses } from '../src/counter-private-state';
 import * as Counter from '../managed/counter/contract/index.js';
 
 // Must match the privateStateId used at deploy time.
