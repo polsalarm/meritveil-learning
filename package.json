@@ -1,13 +1,21 @@
 {
   "name": "meritveil-learning",
   "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "web"
+  ],
   "type": "module",
   "description": "MeritVeil Level 1 private-owner counter on Midnight",
   "author": "",
   "license": "MIT",
   "scripts": {
     "compile": "compact compile contracts/counter.compact managed/counter",
-    "build": "npx tsc --noEmit",
+    "build": "npm run build:cli && npm run build:api && npm run build:web",
+    "build:cli": "npx tsc --noEmit",
+    "build:api": "npx tsc --project api/tsconfig.json",
+    "build:web": "npm run build --workspace web",
+    "dev:web": "npm run dev --workspace web",
     "setup": "npx tsx src/setup.ts",
     "deploy": "npx tsx src/deploy.ts",
     "cli": "npx tsx src/cli.ts",
