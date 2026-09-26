@@ -1,0 +1,16 @@
+# Never upload wallet material, private state, or local caches to Vercel.
+.midnight-state.json
+.midnight-wallet-state/
+midnight-level-db/
+*.seed
+.env
+.env.*
+!.env.example
+
+# Rebuilt remotely.
+node_modules/
+web/node_modules/
+web/dist/
+web/.vite/
+web/public/keys/
+web/public/zkir/
