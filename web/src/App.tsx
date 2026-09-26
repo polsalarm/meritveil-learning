@@ -19,15 +19,21 @@ function shortened(value: string): string {
 }
 
 function nestedMessage(error: unknown): string {
-  if (error instanceof Error && error.message) return error.message;
   if (typeof error === 'string') return error;
-  if (typeof error === 'object' && error !== null && 'cause' in error) {
-    return nestedMessage(error.cause);
+  if (typeof error !== 'object' || error === null) return '';
+  // Lace throws DApp connector APIErrors: { type: 'DAppConnectorAPIError', code, reason } with an often empty message.
+  if ('type' in error && error.type === 'DAppConnectorAPIError') {
+    const { code, reason } = error as { code?: unknown; reason?: unknown };
+    return `Lace ${String(code ?? 'error')}: ${String(reason ?? '') || 'no reason given'}`;
   }
+  if (error instanceof Error && error.message) return error.message;
+  if ('cause' in error) return nestedMessage(error.cause);
   return '';
 }
 
 function friendlyError(error: unknown): { readonly phase: 'rejected' | 'failed'; readonly message: string } {
+  // Errors carry no private state; log them so failures stay diagnosable from DevTools.
+  console.error('[MeritVeil] operation failed', error);
   const message = nestedMessage(error);
   if (/reject|denied|cancel/i.test(message)) {
     return { phase: 'rejected', message: 'Lace rejected the request. No transaction was submitted.' };
@@ -35,16 +41,13 @@ function friendlyError(error: unknown): { readonly phase: 'rejected' | 'failed';
   if (/proof|prover|fetch/i.test(message)) {
     return {
       phase: 'failed',
-      message: 'Proof generation failed. Confirm Lace uses Local proof server http://localhost:6300.',
+      message: `Proof generation failed. Confirm Lace uses Local proof server http://localhost:6300. (${message})`,
     };
   }
   if (/insufficient|dust|balance/i.test(message)) {
-    return { phase: 'failed', message: 'Insufficient Preprod tNIGHT or tDUST for this transaction.' };
+    return { phase: 'failed', message: `Insufficient Preprod tNIGHT or tDUST for this transaction. (${message})` };
   }
-  if (/network|indexer|preprod/i.test(message)) {
-    return { phase: 'failed', message };
-  }
-  return { phase: 'failed', message: message || 'The operation failed before confirmation.' };
+  return { phase: 'failed', message: message || 'The operation failed before confirmation. See the browser console.' };
 }
 
 function phaseLabel(phase: TransactionPhase): string {
