@@ -34,23 +34,24 @@ Goal: prove the local Midnight toolchain and a privacy-aware contract on Preview
 
 Goal: add the wallet-to-proof-to-chain browser flow to the Level 1 repository.
 
-- [ ] Add a React + Vite browser workspace using the active leaderboard browser layout.
-- [ ] Implement `CounterAPI` for deploy/join, private-state binding, state subscription, ledger decoding, and increment calls.
+- [x] Add a React + Vite browser workspace using the active leaderboard browser layout.
+- [x] Implement `CounterAPI` for deploy/join, private-state binding, state subscription, ledger decoding, and increment calls.
 - [ ] Deploy the unchanged counter from the browser to Preprod with a new browser-private owner secret.
-- [ ] Implement Lace discovery, chooser, Preprod network checks, rejection/install guidance, and disconnect.
-- [ ] Centralize wallet, network, indexer, proof-server, public-data, private-state, and ZK providers in one browser manager.
-- [ ] Show idle, proving, submitting, confirmed, rejected, and failed transaction states.
-- [ ] Read the confirmed counter value from the indexer and keep the private secret out of UI, logs, URLs, analytics, and ledger reads.
-- [ ] Use one typed Vite environment object and commit only `.env.example`.
-- [ ] Build and manually inspect the complete browser flow and console.
-- [ ] Deploy the static app to Vercel with Lace using the tester's local proof server.
-- [ ] Update README with the live URL, Preprod address, privacy claim, prerequisites, local steps, and demo placeholder.
-- [ ] Record the under-two-minute demo, make at least eight meaningful commits, and submit Level 2.
+- [x] Implement Lace discovery, chooser, Preprod network checks, rejection/install guidance, and disconnect.
+- [x] Centralize wallet, network, indexer, proof-server, public-data, private-state, and ZK providers in one browser manager.
+- [x] Show idle, proving, submitting, confirmed, rejected, and failed transaction states.
+- [x] Read the confirmed counter value from the indexer and keep the private secret out of UI, logs, URLs, analytics, and ledger reads.
+- [x] Use one typed Vite environment object and commit only `.env.example`.
+- [ ] Build and manually inspect the complete browser flow and console. (Build and no-Lace console verified; Lace flow pending.)
+- [x] Deploy the static app to Vercel with Lace using the tester's local proof server. Live: <https://meritveil-learning.vercel.app>
+- [ ] Update README with the live URL, Preprod address, privacy claim, prerequisites, local steps, and demo placeholder. (All except the Preprod address.)
+- [x] Make at least eight meaningful commits.
+- [ ] Record the under-two-minute demo and submit Level 2.
 
 ### Level 2 exit proof
 
-- [ ] Production build succeeds with zero errors.
-- [ ] A fresh browser without Lace shows installation guidance.
+- [x] Production build succeeds with zero errors.
+- [x] A fresh browser without Lace shows installation guidance.
 - [ ] Lace connects to Preprod, increment confirms, the indexer returns the new count, and disconnect clears wallet state.
 - [ ] The public deployment points to the documented Preprod contract.
 
