@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Compile, test, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      COMPACT_COMPILER_VERSION: 0.31.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies (lockfile only)
+        run: npm ci
+
+      - name: Install Compact compiler
+        run: |
+          curl --proto '=https' --tlsv1.2 -LsSf \
+            https://github.com/midnightntwrk/compact/releases/latest/download/compact-installer.sh | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Pin Compact compiler
+        run: |
+          compact update "$COMPACT_COMPILER_VERSION"
+          compact compile --version
+
+      - name: Compile contract
+        run: npm run compile
+
+      - name: Run contract tests
+        run: npm test
+
+      - name: Type-check and build CLI, API, and browser app
+        run: npm run build
