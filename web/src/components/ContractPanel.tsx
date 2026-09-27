@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import type { PendingAction } from '../hooks/useMidnight';
 
 const PREPROD_FAUCET_URL = 'https://faucet.preprod.midnight.network/';
+const COPIED_FEEDBACK_MS = 1600;
 
 interface ContractPanelProps {
   readonly joined: boolean;
@@ -22,6 +24,13 @@ export function ContractPanel({
   onJoin,
   onDeploy,
 }: ContractPanelProps) {
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    if (!copied) return undefined;
+    const timer = window.setTimeout(() => setCopied(false), COPIED_FEEDBACK_MS);
+    return () => window.clearTimeout(timer);
+  }, [copied]);
+
   return (
     <article className="card contract-card" aria-labelledby="contract-title">
       <div className="section-heading">
@@ -38,7 +47,18 @@ export function ContractPanel({
           if (!busy && contractInput.trim()) onJoin();
         }}
       >
-        <label htmlFor="contract-address">Contract address</label>
+        <div className="label-row">
+          <label htmlFor="contract-address">Contract address</label>
+          {joined ? (
+            <button
+              type="button"
+              className="text-button"
+              onClick={() => navigator.clipboard.writeText(contractInput.trim()).then(() => setCopied(true), () => undefined)}
+            >
+              {copied ? 'Copied ✓' : 'Copy address'}
+            </button>
+          ) : null}
+        </div>
         <input
           id="contract-address"
           value={contractInput}
