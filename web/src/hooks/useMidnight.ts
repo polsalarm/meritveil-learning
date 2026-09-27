@@ -17,6 +17,8 @@ export type { TransactionPhase, WalletChoice, WalletSession };
 const WALLET_DETECTION_ATTEMPTS = 25;
 const WALLET_DETECTION_INTERVAL_MS = 200;
 const CONFIRMATION_TIMEOUT_MS = 120_000;
+// Contract addresses are public; remembering the last one lets the owner's browser rejoin its counter after a reload.
+const LAST_CONTRACT_STORAGE_KEY = 'meritveil-learning:preprod:last-contract:v1';
 
 /** Owns wallet discovery, the Lace session, the joined counter, and every transaction state shown in the UI. */
 export function useMidnight() {
@@ -27,7 +29,9 @@ export function useMidnight() {
   const [session, setSession] = useState<WalletSession | null>(null);
   const [counterApi, setCounterApi] = useState<CounterAPI | null>(null);
   const [counterState, setCounterState] = useState<CounterState | null>(null);
-  const [contractInput, setContractInput] = useState(browserConfig.defaultContract ?? '');
+  const [contractInput, setContractInput] = useState(
+    () => localStorage.getItem(LAST_CONTRACT_STORAGE_KEY) ?? browserConfig.defaultContract ?? '',
+  );
   const [phase, setPhase] = useState<TransactionPhase>('idle');
   const [pendingAction, setPendingAction] = useState<PendingAction>(null);
   const [provedWithoutRevealing, setProvedWithoutRevealing] = useState(false);
@@ -76,6 +80,7 @@ export function useMidnight() {
   const bindCounter = useCallback((api: CounterAPI) => {
     setCounterApi(api);
     setContractInput(api.deployedContractAddress);
+    localStorage.setItem(LAST_CONTRACT_STORAGE_KEY, api.deployedContractAddress);
     setProvedWithoutRevealing(false);
   }, []);
 
@@ -90,10 +95,11 @@ export function useMidnight() {
       setWalletStatus('connected');
       setNotice('Lace connected to Preprod. Private owner material stays in this browser.');
 
-      if (browserConfig.defaultContract) {
+      const rememberedContract = localStorage.getItem(LAST_CONTRACT_STORAGE_KEY) ?? browserConfig.defaultContract;
+      if (rememberedContract) {
         setPendingAction('join');
-        bindCounter(await manager.join(browserConfig.defaultContract));
-        setNotice('Lace connected and the published Preprod counter joined.');
+        bindCounter(await manager.join(rememberedContract));
+        setNotice('Lace connected and the saved Preprod counter joined.');
       }
     } catch (error: unknown) {
       fail(error);
