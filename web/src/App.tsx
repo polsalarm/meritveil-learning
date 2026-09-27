@@ -1,6 +1,7 @@
 import { CircuitCall } from './components/CircuitCall';
 import { ContractPanel } from './components/ContractPanel';
 import { WalletBadge, WalletConnect } from './components/WalletConnect';
+import { StepTracker } from './components/StepTracker';
 import { useMidnight, type TransactionPhase } from './hooks/useMidnight';
 
 const PHASE_LABELS: Record<TransactionPhase, string> = {
@@ -41,6 +42,13 @@ export default function App() {
           {inFlight ? <span className="spinner" /> : null}
         </div>
       </section>
+
+      <StepTracker
+        connected={session !== null}
+        joined={midnight.counterApi !== null}
+        proving={inFlight}
+        proved={midnight.provedWithoutRevealing}
+      />
 
       <WalletConnect
         walletStatus={midnight.walletStatus}

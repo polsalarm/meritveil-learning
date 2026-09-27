@@ -76,6 +76,17 @@ input::placeholder { color: #596662; }
 .card .proof-badge { display: inline-flex; align-items: center; gap: 8px; width: max-content; max-width: 100%; margin-bottom: 14px; padding: 7px 12px; border: 1px solid rgba(121, 239, 181, 0.35); border-radius: 999px; color: #79efb5; background: rgba(121, 239, 181, 0.08); font: 500 0.78rem 'DM Mono', monospace; }
 .counter-card .primary-button { margin-top: auto; }
 .field-help { margin: 8px 0 0; font-size: 0.8rem; }
+.label-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.label-row label { margin: 0; }
+.label-row .text-button { font: 0.72rem 'DM Mono', monospace; }
+
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 0 0 18px; padding: 0; list-style: none; }
+.step { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid #263035; border-radius: 12px; color: #6f817b; background: rgba(12, 17, 19, 0.6); font-size: 0.85rem; transition: border-color 200ms ease, color 200ms ease, background 200ms ease; }
+.step-index { display: inline-grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 50%; border: 1px solid #344045; font: 500 0.72rem 'DM Mono', monospace; }
+.step-current { color: #edf5f1; border-color: rgba(154, 242, 200, 0.45); background: rgba(154, 242, 200, 0.06); }
+.step-current .step-index { border-color: #9af2c8; color: #9af2c8; }
+.step-done { color: #9ca8a4; }
+.step-done .step-index { border-color: transparent; color: #07100c; background: #9af2c8; }
 
 .notice { display: grid; grid-template-columns: 160px 1fr; gap: 24px; margin: 18px 0; padding: 16px 18px; border-left: 2px solid #76e7ae; background: rgba(118, 231, 174, 0.05); color: #9da9a5; font-size: 0.86rem; line-height: 1.5; }
 .notice strong { color: #dfe8e4; }
@@ -90,6 +101,7 @@ input::placeholder { color: #596662; }
   .shell { width: min(100% - 24px, 680px); padding-top: 18px; }
   .header, .hero { align-items: flex-start; }
   .hero, .connect-card, .workspace, .privacy-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
   .hero { padding-top: 64px; }
   .phase { justify-self: start; }
   .connect-card { align-items: stretch; }
