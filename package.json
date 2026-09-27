@@ -25,7 +25,7 @@
     "proof-server:stop": "docker compose down",
     "proof-server:preprod": "docker compose up -d proof-server",
     "clean": "node scripts/clean.mjs",
-    "test": "node --import tsx --test tests/counter.test.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
     "test:e2e": "tsx scripts/e2e-check.ts"
   },
   "dependencies": {

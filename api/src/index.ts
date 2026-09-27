@@ -58,6 +58,10 @@ export class CounterAPI {
     contractAddress: ContractAddress,
     privateState: CounterPrivateState,
   ): Promise<CounterAPI> {
+    // findDeployedContract waits indefinitely for a deployment that may never exist; fail fast instead.
+    if (!(await providers.publicDataProvider.queryContractState(contractAddress))) {
+      throw new Error(`No contract is deployed at ${contractAddress} on this network.`);
+    }
     const deployedContract = await findDeployedContract(providers, {
       contractAddress,
       compiledContract: compiledCounterContract,

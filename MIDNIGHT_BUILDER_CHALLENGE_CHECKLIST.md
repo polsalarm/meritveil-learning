@@ -59,18 +59,19 @@ Goal: add the wallet-to-proof-to-chain browser flow to the Level 1 repository.
 
 Goal: harden the learning DApp and obtain proposal approval for MeritVeil.
 
-- [ ] Strengthen contract tests around transitions, authorization, duplicate prevention, and private-data absence.
-- [ ] Add GitHub Actions for pinned install, Compact compile, contract tests, and browser build.
-- [ ] Add the green CI badge directly below the README title.
-- [ ] Polish wallet/proof/submission errors, loading states, mobile layout, focus/keyboard behavior, privacy copy, and console cleanliness.
-- [ ] Create `PROPOSAL.md` with the challenge's exact headings and the complete MeritVeil proposal.
-- [ ] Keep the proposal narrow: one organizer and quest per contract, public terms and funded tNIGHT pool, organizer-reviewed evidence, private participant-bound attestation, one payout per commitment.
-- [ ] Put README sections in the required order and link the proposal.
-- [ ] Record the one-minute demo, make at least ten meaningful commits, submit Level 3, and wait for approval.
+- [x] Strengthen contract tests around transitions, authorization, and private-data absence (9 tests). Duplicate prevention does not apply to the counter; it is covered by the Level 4 MeritVeil claim tests.
+- [x] Add GitHub Actions for pinned install, Compact compile, contract tests, and browser build.
+- [x] Add the green CI badge directly below the README title.
+- [x] Polish wallet/proof/submission errors, loading states, mobile layout, focus/keyboard behavior, privacy copy, and console cleanliness.
+- [x] Create `PROPOSAL.md` with the challenge's exact headings and the complete MeritVeil proposal.
+- [x] Keep the proposal narrow: one organizer and quest per contract, public terms and funded tNIGHT pool, organizer-reviewed evidence, private participant-bound attestation, one payout per commitment.
+- [x] Put README sections in the required order and link the proposal.
+- [x] Make at least ten meaningful commits.
+- [ ] Record the one-minute demo, submit Level 3, and wait for approval. (Walkthrough video linked in README; live Preprod recording pending.)
 
 ### Level 3 exit proof
 
-- [ ] CI passes from a clean checkout.
+- [x] CI passes from a clean checkout.
 - [ ] Production build and demonstrated flow have zero console errors.
 - [ ] README contains a live URL and non-empty Preprod address.
 - [ ] `PROPOSAL.md` uses the literal challenge headings and matches the planned privacy model.
