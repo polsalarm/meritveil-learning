@@ -122,11 +122,12 @@ compact compile --version
 npm test
 ```
 
-Nine behavior tests run against the generated contract runtime:
+Eighteen tests run: nine against the generated contract runtime and nine for the browser's wallet failure messages.
 
 - **Owner authorization** — the owner increments 0 → 1; repeated increments count 1, 2, 3; a different secret is rejected with unchanged state; an intruder mid-history is rejected while the owner continues; the original owner is rejected on a counter committed to someone else.
 - **Owner commitment** — the same secret re-derives the same commitment; different secrets give different commitments; the commitment is not the secret.
 - **Privacy** — decoded public state contains only the counter and commitment; the secret is absent from the public transcript and present only in private witness outputs; stored ledger cells contain the commitment but never the secret.
+- **Wallet failure messages** (`tests/errors.test.ts`) — Lace rejections map to *Rejected* even with an empty message and win over secondary details; other connector codes keep their reason; proof-server, tDUST, unknown-address, and indexer-timeout failures get actionable messages; wrapped causes are read.
 
 `npm run build` type-checks the CLI and API and builds the browser app. `npm run test:e2e` reconnects to the active CLI network deployment and verifies that the contract is indexed and decodes correctly.
 

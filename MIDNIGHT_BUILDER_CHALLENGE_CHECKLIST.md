@@ -66,7 +66,8 @@ Goal: harden the learning DApp and obtain proposal approval for MeritVeil.
 - [x] Create `PROPOSAL.md` with the challenge's exact headings and the complete MeritVeil proposal.
 - [x] Keep the proposal narrow: one organizer and quest per contract, public terms and funded tNIGHT pool, organizer-reviewed evidence, private participant-bound attestation, one payout per commitment.
 - [x] Put README sections in the required order and link the proposal.
-- [ ] Record the one-minute demo, make at least ten meaningful commits, submit Level 3, and wait for approval.
+- [x] Make at least ten meaningful commits.
+- [ ] Record the one-minute demo, submit Level 3, and wait for approval. (Walkthrough video linked in README; live Preprod recording pending.)
 
 ### Level 3 exit proof
 
