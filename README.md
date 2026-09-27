@@ -6,7 +6,7 @@
 
 ## Live Demo
 
-<https://meritveil-learning.vercel.app>
+<https://meritveil-learning.vercel.app> · [Demo video](https://youtu.be/YX7PCYhhB-c)
 
 Requires Chrome with Lace on Preprod and a local proof server — see [Prerequisites](#prerequisites).
 
@@ -149,7 +149,9 @@ See [PROPOSAL.md](./PROPOSAL.md) — MeritVeil: private proof-of-completion rewa
 
 ## Demo
 
-Demo video: _to be recorded._
+[![MeritVeil Counter demo video](https://img.youtube.com/vi/YX7PCYhhB-c/maxresdefault.jpg)](https://youtu.be/YX7PCYhhB-c)
+
+Watch on YouTube: <https://youtu.be/YX7PCYhhB-c>
 
 ## Screenshots
 
