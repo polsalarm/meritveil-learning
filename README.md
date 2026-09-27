@@ -147,6 +147,19 @@ Vercel builds the static app from `web/` (`vercel.json`) for pull request previe
 
 See [PROPOSAL.md](./PROPOSAL.md) — MeritVeil: private proof-of-completion rewards for community quests.
 
+## Troubleshooting
+
+| Symptom | Fix |
+|---|---|
+| "Lace is required for transactions" | Install Lace in Chrome, then reload the page. |
+| Faucet says "Provided address is invalid" | Use the **Unshielded** address (`mn_addr_preprod1…`), not the Shielded or DUST address. |
+| tNIGHT shows as *Pending* | Wait for the Midnight wallet in Lace to finish syncing; the first sync scans all of Preprod and can take a while. |
+| tDUST tank is empty | tDUST is not sent by the faucet. In Lace, open the DUST action next to Send/Receive and designate your own DUST address; tDUST then accrues from your tNIGHT. |
+| "Proof generation failed" | Start the proof server (`npm run proof-server:preprod`) and set Lace's proof server to **Local** `http://localhost:6300`. |
+| "Insufficient Preprod tNIGHT or tDUST" | Wait for tDUST to accrue, then retry. |
+| "No counter exists at that address on Preprod" | The address is from another network or mistyped — deploy a new counter or paste a Preprod address. |
+| Increment is rejected with "owner secret does not match commitment" | Only the browser that deployed a counter holds its secret. Deploy a new counter from this browser. |
+
 ## Demo
 
 [![MeritVeil Counter demo video](https://img.youtube.com/vi/YX7PCYhhB-c/maxresdefault.jpg)](https://youtu.be/YX7PCYhhB-c)
